@@ -125,6 +125,29 @@ let obj = {}
 软删除：将属性值修改为 null。属性名还存在，只不过属性值是 null
 彻底删除：delete 对象.属性名 或者 delete 对象['属性名'] ;删除后，属性名和属性值都不存在了
 
+#### 如何操作对象
+
+```javascript
+value: 123; // value 是属性的属性值，默认为 undefined
+writable: false; // 表示属性值是否可改变（即是否可写），默认为 true
+enumerable: true; // 表示该属性是否可遍历 默认为 true
+configurable: false; // 表示可配置性，默认为 true 如果是 flase 表示无法删除该属性
+get: undefined; // 一个函数，代表 getter
+set: undefined; // 一个函数，代表 setter
+Object.getOwnPropertyDesctiptor(obj, 'p') // 获取属性描述对象
+Object.getOwnPropertyNames() // 返回一个数组，成员是参数对象自身的全部属性名，不管该属性是否可遍历
+		
+// 注意：一旦定义了取值函数 get 或 set 就不能设置 writable 或者同时定义 vlaue 属性，否则报错
+
+Object.preventExtensions(obj) // 使对象无法添加新属性
+Object.isExtensible(obj) // 检查一个对象是否用了 Object.preventExensions 方法
+Object.seal(obj) // 让一个对象不能添加新属性且不能删除旧属性
+Object.isSealed(obj) // 检查一个对象有没有用 Object.seal 方法
+Object.freeze(obj) // 使一个对象不能添加不能删除不能改变属性的值，相当于常量
+Object.isFrozen(obj) // 检查一个对象有没有用 Object.freeze 方法
+obj.hasOwnProperty('p') // 检查对象里是否包含该属性
+```
+
 ### 数组
 
 第一项是的索引是0； length 代表数组项个数；最后一项的索引是 length - 1；
